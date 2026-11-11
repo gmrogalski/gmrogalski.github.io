@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1018">
+  <title>PacRogal Arcade</title>
+  <link rel="stylesheet" href="assets/game.css">
+  <style>
+    body { margin: 0; padding: 18px; background: #080c12; }
+    .pr-app { width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="pr-app" id="pacrogal-preview" data-player-src="assets/pacrogal-player.png" data-enemy-src="assets/kajzerka-enemy.png">
+    <header class="pr-header">
+      <a class="pr-brand" href="#pacrogal-game" aria-label="PacRogal, przejdź do gry">
+        <span class="pr-brand-mark">PR</span><span>ARCADE <b>TORUŃ</b></span>
+      </a>
+      <nav aria-label="Nawigacja gry"><a href="#pacrogal-game">Gra</a><a href="#pacrogal-ranking">Ranking</a><a href="#pacrogal-zasady">Zasady</a></nav>
+    </header>
+    <section class="pr-hero">
+      <div class="pr-hero-copy"><p class="pr-eyebrow">ARCADE • ROGALOWY LABIRYNT</p><h1>PacRogal</h1><p class="pr-hero-subtitle">Zbieraj okruszki, uciekaj kajzerkom i zapisz swój najlepszy wynik.</p></div>
+      <div class="pr-hero-art" aria-hidden="true"><img src="assets/pacrogal-player.png" alt=""></div>
+    </section>
+    <main class="pr-main">
+      <section class="pr-stage" id="pacrogal-game" aria-label="Gra PacRogal">
+        <div class="pr-hud">
+          <div class="pr-hud-item"><span>PUNKTY</span><strong data-score>0</strong></div>
+          <div class="pr-hud-item"><span>ŻYCIA</span><strong data-lives>3</strong></div>
+          <div class="pr-hud-item"><span>POZIOM</span><strong data-level>1</strong></div>
+        </div>
+        <p class="pr-live-message" data-game-message aria-live="polite">Wpisz pseudonim i rozpocznij rozgrywkę.</p>
+        <div class="pr-canvas-wrap">
+          <canvas class="pr-canvas" width="840" height="600" tabindex="0" aria-label="Labirynt PacRogala. Steruj strzałkami lub klawiszami W, A, S, D."></canvas>
+          <div class="pr-overlay" data-overlay>
+            <div class="pr-overlay-card">
+              <img class="pr-overlay-mascot" src="assets/pacrogal-player.png" alt="PacRogal">
+              <p class="pr-eyebrow" data-overlay-kicker>GOTOWY NA ROZGRYWKĘ?</p>
+              <h2 data-overlay-title>PacRogal</h2>
+              <p class="pr-overlay-copy" data-overlay-copy>Zbierz wszystkie okruszki i omijaj kajzerki. Duże rogale dają chwilę przewagi.</p>
+              <form data-start-form>
+                <label for="pacrogal-name">Pseudonim do rankingu</label>
+                <input id="pacrogal-name" data-player-name type="text" maxlength="20" autocomplete="nickname" placeholder="np. Gracz 1" required>
+                <button class="pr-button pr-button--gold" type="submit">Rozpocznij grę</button>
+              </form>
+              <button class="pr-button pr-button--gold" type="button" data-overlay-action hidden>Wznów</button>
+            </div>
+          </div>
+        </div>
+        <div class="pr-game-actions">
+          <button class="pr-button pr-button--quiet" type="button" data-pause disabled>Wstrzymaj</button>
+          <button class="pr-button pr-button--quiet" type="button" data-finish disabled>Zakończ i zapisz</button>
+          <button class="pr-button pr-button--quiet" type="button" data-restart disabled>Nowa gra</button>
+        </div>
+        <div class="pr-touch-controls" aria-label="Sterowanie dotykowe">
+          <button type="button" data-direction="up" aria-label="Idź w górę">↑</button>
+          <button type="button" data-direction="left" aria-label="Idź w lewo">←</button>
+          <button type="button" data-direction="down" aria-label="Idź w dół">↓</button>
+          <button type="button" data-direction="right" aria-label="Idź w prawo">→</button>
+        </div>
+        <p class="pr-controls-note">Sterowanie: strzałki lub W, A, S, D. Na telefonie użyj przycisków albo przesuń palcem po planszy.</p>
+      </section>
+      <aside class="pr-sidebar">
+        <section class="pr-panel pr-ranking" id="pacrogal-ranking">
+          <div class="pr-panel-heading"><div><p class="pr-eyebrow">NAJLEPSI ŁOWCY OKRUSZKÓW</p><h2>Ranking</h2></div><span class="pr-trophy" aria-hidden="true">★</span></div>
+          <p class="pr-ranking-status" data-ranking-status aria-live="polite">Wczytywanie rankingu…</p>
+          <ol class="pr-score-list" data-leaderboard></ol>
+          <p class="pr-footnote">Tabela przechowuje najlepszy wynik każdego pseudonimu. Nie podawaj tu nazwiska ani innych danych osobowych.</p>
+        </section>
+        <section class="pr-panel pr-rules" id="pacrogal-zasady">
+          <p class="pr-eyebrow">JAK GRAĆ</p><h2>Okruszki kontra kajzerki</h2>
+          <ul><li>Zbierz wszystkie małe okruszki, aby przejść poziom.</li><li>Duże rogale dają chwilową moc. W tym czasie możesz złapać kajzerkę.</li><li>Kolizja z kajzerką bez mocy kosztuje jedno życie. Masz ich trzy.</li><li>Najlepszy wynik zapisuje się pod wybranym pseudonimem.</li></ul>
+        </section>
+        <section class="pr-panel pr-controls-panel">
+          <p class="pr-eyebrow">STEROWANIE</p><h2>Wybierz kierunek</h2>
+          <div class="pr-key-guide"><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd><span>lub</span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+          <p>Escape wstrzymuje grę. Na ekranie dotykowym przesuń palcem po labiryncie.</p>
+        </section>
+      </aside>
+    </main>
+    <footer class="pr-footer"><span>PacRogal Arcade</span><span>Powodzenia w labiryncie!</span></footer>
+  </div>
+  <script src="assets/config.js"></script>
+  <script src="assets/game.js"></script>
+</body>
+</html>
